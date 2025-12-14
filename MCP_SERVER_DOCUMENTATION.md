@@ -1,113 +1,113 @@
-# Документация MCP Server для Task Tracker
+# Task Tracker MCP Server Documentation
 
-## Описание
+## Description
 
-Task Tracker MCP Server — это сервер, реализующий протокол Model Context Protocol (MCP) для управления задачами в Task Tracker приложении. Он позволяет AI-ассистентам взаимодействовать с задачами через стандартизированный протокол.
+Task Tracker MCP Server is a server that implements the Model Context Protocol (MCP) for managing tasks in the Task Tracker application. It allows AI assistants to interact with tasks through a standardized protocol.
 
-MCP (Model Context Protocol) Server — это сервер, который позволяет AI-ассистентам (таким как Claude в Cursor) взаимодействовать с вашим приложением Task Tracker. Через MCP Server AI может создавать, обновлять, удалять и получать информацию о задачах.
+MCP (Model Context Protocol) Server is a server that allows AI assistants (such as Claude in Cursor) to interact with your Task Tracker application. Through the MCP Server, AI can create, update, delete, and retrieve information about tasks.
 
-## Архитектура
+## Architecture
 
-### Технологический стек
+### Technology Stack
 
-- **@modelcontextprotocol/sdk** - SDK для создания MCP серверов
-- **TypeScript** - Типобезопасность и современный JavaScript
-- **Node.js** - Среда выполнения
+- **@modelcontextprotocol/sdk** - SDK for creating MCP servers
+- **TypeScript** - Type safety and modern JavaScript
+- **Node.js** - Runtime environment
 
-### Структура сервера
+### Server Structure
 
 ```
 mcp-server/
 ├── src/
-│   └── index.ts          # Основной файл сервера
-├── dist/                 # Скомпилированный JavaScript
+│   └── index.ts          # Main server file
+├── dist/                 # Compiled JavaScript
 ├── package.json
 └── tsconfig.json
 ```
 
-### Основные компоненты
+### Main Components
 
-1. **TaskTrackerMCPServer класс**
-   - Инициализация MCP сервера
-   - Регистрация обработчиков запросов
-   - Обработка ошибок
+1. **TaskTrackerMCPServer class**
+   - MCP server initialization
+   - Request handler registration
+   - Error handling
 
-2. **Хранилище данных**
-   - JSON файл: `~/.task-tracker/tasks.json` (Linux/Mac) или `C:\Users\ВашеИмя\.task-tracker\tasks.json` (Windows)
-   - Функции: `readTasks()`, `writeTasks()`
+2. **Data Storage**
+   - JSON file: `~/.task-tracker/tasks.json` (Linux/Mac) or `C:\Users\YourName\.task-tracker\tasks.json` (Windows)
+   - Functions: `readTasks()`, `writeTasks()`
 
-3. **Инструменты (Tools)**
-   - 5 инструментов для управления задачами
-   - JSON схемы для валидации входных данных
+3. **Tools**
+   - 5 tools for task management
+   - JSON schemas for input data validation
 
-## Установка и настройка
+## Installation and Setup
 
-### Шаг 1: Установка зависимостей
+### Step 1: Install Dependencies
 
-Откройте терминал в папке `mcp-server` и выполните:
+Open a terminal in the `mcp-server` folder and run:
 
 ```bash
 cd mcp-server
 npm install
 ```
 
-### Шаг 2: Сборка проекта
+### Step 2: Build the Project
 
-Скомпилируйте TypeScript код в JavaScript:
+Compile TypeScript code to JavaScript:
 
 ```bash
 npm run build
 ```
 
-После успешной сборки в папке `dist` появится файл `index.js`.
+After successful build, the `index.js` file will appear in the `dist` folder.
 
-### Шаг 3: Проверка работы сервера
+### Step 3: Verify Server Operation
 
-Для проверки можно запустить сервер напрямую:
+To verify, you can run the server directly:
 
 ```bash
 npm start
 ```
 
-Сервер запустится и будет готов к работе. Для остановки нажмите `Ctrl+C`.
+The server will start and be ready to work. Press `Ctrl+C` to stop.
 
-### Режим разработки
+### Development Mode
 
-Для разработки с автоматической перезагрузкой при изменениях:
+For development with automatic reload on changes:
 
 ```bash
 npm run dev
 ```
 
-Этот режим использует `tsx` для запуска TypeScript файлов напрямую без компиляции.
+This mode uses `tsx` to run TypeScript files directly without compilation.
 
-## Доступные инструменты
+## Available Tools
 
 ### 1. list_tasks
 
-Получить список всех задач или отфильтрованных по статусу.
+Get a list of all tasks or filtered by status.
 
-**Параметры:**
+**Parameters:**
 ```json
 {
   "status": "todo" | "in-progress" | "done" | "all"
 }
 ```
 
-**Пример использования:**
+**Usage Example:**
 ```json
 {
   "status": "todo"
 }
 ```
 
-**Ответ:**
+**Response:**
 ```json
 [
   {
     "id": "1234567890",
-    "title": "Завершить проект",
-    "description": "Необходимо завершить все задачи",
+    "title": "Complete project",
+    "description": "Need to complete all tasks",
     "status": "todo",
     "createdAt": 1234567890
   }
@@ -116,33 +116,33 @@ npm run dev
 
 ### 2. create_task
 
-Создать новую задачу.
+Create a new task.
 
-**Параметры:**
+**Parameters:**
 ```json
 {
-  "title": "string (обязательно)",
-  "description": "string (опционально)",
-  "status": "todo" | "in-progress" | "done" (по умолчанию: "todo")
+  "title": "string (required)",
+  "description": "string (optional)",
+  "status": "todo" | "in-progress" | "done" (default: "todo")
 }
 ```
 
-**Пример использования:**
+**Usage Example:**
 ```json
 {
-  "title": "Изучить MCP протокол",
-  "description": "Прочитать документацию и создать пример сервера",
+  "title": "Learn MCP protocol",
+  "description": "Read documentation and create a server example",
   "status": "in-progress"
 }
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "content": [
     {
       "type": "text",
-      "text": "Задача успешно создана: { ... }"
+      "text": "Task successfully created: { ... }"
     }
   ]
 }
@@ -150,17 +150,17 @@ npm run dev
 
 ### 3. update_task_status
 
-Обновить статус существующей задачи.
+Update the status of an existing task.
 
-**Параметры:**
+**Parameters:**
 ```json
 {
-  "taskId": "string (обязательно)",
-  "status": "todo" | "in-progress" | "done" (обязательно)
+  "taskId": "string (required)",
+  "status": "todo" | "in-progress" | "done" (required)
 }
 ```
 
-**Пример использования:**
+**Usage Example:**
 ```json
 {
   "taskId": "1234567890",
@@ -168,13 +168,13 @@ npm run dev
 }
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "content": [
     {
       "type": "text",
-      "text": "Статус задачи обновлен: { ... }"
+      "text": "Task status updated: { ... }"
     }
   ]
 }
@@ -182,29 +182,29 @@ npm run dev
 
 ### 4. delete_task
 
-Удалить задачу.
+Delete a task.
 
-**Параметры:**
+**Parameters:**
 ```json
 {
-  "taskId": "string (обязательно)"
+  "taskId": "string (required)"
 }
 ```
 
-**Пример использования:**
+**Usage Example:**
 ```json
 {
   "taskId": "1234567890"
 }
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "content": [
     {
       "type": "text",
-      "text": "Задача удалена: { ... }"
+      "text": "Task deleted: { ... }"
     }
   ]
 }
@@ -212,16 +212,16 @@ npm run dev
 
 ### 5. get_task_statistics
 
-Получить статистику по задачам (количество по каждому статусу).
+Get task statistics (count by each status).
 
-**Параметры:** Нет
+**Parameters:** None
 
-**Пример использования:**
+**Usage Example:**
 ```json
 {}
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "total": 10,
@@ -231,17 +231,17 @@ npm run dev
 }
 ```
 
-## Интеграция с AI-ассистентами
+## Integration with AI Assistants
 
-### Настройка в Cursor
+### Setup in Cursor
 
-1. Откройте настройки Cursor (обычно через `Ctrl+,` или `Cmd+,`)
+1. Open Cursor settings (usually via `Ctrl+,` or `Cmd+,`)
 
-2. Найдите раздел "MCP Servers" или "Model Context Protocol"
+2. Find the "MCP Servers" or "Model Context Protocol" section
 
-3. Добавьте следующую конфигурацию:
+3. Add the following configuration:
 
-**Для Windows:**
+**For Windows:**
 ```json
 {
   "mcpServers": {
@@ -253,7 +253,7 @@ npm run dev
 }
 ```
 
-**Для Linux/Mac:**
+**For Linux/Mac:**
 ```json
 {
   "mcpServers": {
@@ -265,16 +265,16 @@ npm run dev
 }
 ```
 
-**Важно:** 
-- Замените путь на абсолютный путь к вашему проекту
-- Используйте двойные обратные слеши (`\\`) в Windows или обычные слеши (`/`) в Linux/Mac
-- После изменения конфигурации **обязательно перезапустите Cursor**
+**Important:** 
+- Replace the path with the absolute path to your project
+- Use double backslashes (`\\`) in Windows or regular slashes (`/`) in Linux/Mac
+- **Restart Cursor** after changing the configuration
 
-### Настройка в Claude Desktop
+### Setup in Claude Desktop
 
-Добавьте в файл конфигурации Claude Desktop (обычно `%APPDATA%\\Claude\\claude_desktop_config.json` на Windows или `~/Library/Application Support/Claude/claude_desktop_config.json` на Mac):
+Add to the Claude Desktop configuration file (usually `%APPDATA%\\Claude\\claude_desktop_config.json` on Windows or `~/Library/Application Support/Claude/claude_desktop_config.json` on Mac):
 
-**Для Windows:**
+**For Windows:**
 ```json
 {
   "mcpServers": {
@@ -286,7 +286,7 @@ npm run dev
 }
 ```
 
-**Для Linux/Mac:**
+**For Linux/Mac:**
 ```json
 {
   "mcpServers": {
@@ -298,55 +298,55 @@ npm run dev
 }
 ```
 
-**Важно:** Используйте абсолютный путь к файлу `dist/index.js`. После изменения конфигурации перезапустите Claude Desktop.
+**Important:** Use an absolute path to the `dist/index.js` file. After changing the configuration, restart Claude Desktop.
 
-### Проверка подключения
+### Connection Verification
 
-После перезапуска Cursor/Claude Desktop, AI-ассистент должен автоматически подключиться к MCP Server. Вы можете проверить это, попросив AI:
+After restarting Cursor/Claude Desktop, the AI assistant should automatically connect to the MCP Server. You can verify this by asking the AI:
 
 ```
-Покажи мне список всех задач
+Show me a list of all tasks
 ```
 
-Если сервер работает правильно, AI сможет использовать инструменты для работы с задачами.
+If the server is working correctly, the AI will be able to use tools to work with tasks.
 
-## Использование через AI-ассистента
+## Usage via AI Assistant
 
-После настройки вы можете использовать AI для управления задачами естественным языком:
+After setup, you can use AI to manage tasks in natural language:
 
-### Примеры команд:
+### Command Examples:
 
-1. **Создание задачи:**
+1. **Creating a task:**
    ```
-   Создай задачу "Изучить TypeScript" со статусом "in-progress"
+   Create a task "Learn TypeScript" with status "in-progress"
    ```
    
-   AI использует инструмент `create_task` с параметрами:
+   AI uses the `create_task` tool with parameters:
    ```json
    {
-     "title": "Изучить TypeScript",
+     "title": "Learn TypeScript",
      "status": "in-progress"
    }
    ```
 
-2. **Получение списка задач:**
+2. **Getting a task list:**
    ```
-   Покажи мне все задачи со статусом "todo"
+   Show me all tasks with status "todo"
    ```
    
-   AI использует инструмент `list_tasks` с параметрами:
+   AI uses the `list_tasks` tool with parameters:
    ```json
    {
      "status": "todo"
    }
    ```
 
-3. **Обновление статуса:**
+3. **Updating status:**
    ```
-   Переведи задачу с ID 1234567890 в статус "done"
+   Move task with ID 1234567890 to status "done"
    ```
    
-   AI использует инструмент `update_task_status` с параметрами:
+   AI uses the `update_task_status` tool with parameters:
    ```json
    {
      "taskId": "1234567890",
@@ -354,44 +354,44 @@ npm run dev
    }
    ```
 
-4. **Получение статистики:**
+4. **Getting statistics:**
    ```
-   Сколько у меня задач в работе?
+   How many tasks do I have in progress?
    ```
    
-   AI использует инструмент `get_task_statistics` и возвращает количество задач со статусом "in-progress".
+   AI uses the `get_task_statistics` tool and returns the count of tasks with status "in-progress".
 
-5. **Удаление задачи:**
+5. **Deleting a task:**
    ```
-   Удали задачу с ID 1234567890
+   Delete task with ID 1234567890
    ```
    
-   AI использует инструмент `delete_task` с параметрами:
+   AI uses the `delete_task` tool with parameters:
    ```json
    {
      "taskId": "1234567890"
    }
    ```
 
-## Хранение данных
+## Data Storage
 
-MCP Server сохраняет все задачи в JSON файл:
+MCP Server saves all tasks to a JSON file:
 
-- **Windows:** `C:\Users\ВашеИмя\.task-tracker\tasks.json`
+- **Windows:** `C:\Users\YourName\.task-tracker\tasks.json`
 - **Linux/Mac:** `~/.task-tracker/tasks.json`
 
-**Важно:** Это хранилище **отдельно** от localStorage браузера, поэтому задачи, созданные через MCP Server, не будут автоматически отображаться в веб-приложении и наоборот.
+**Important:** This storage is **separate** from browser localStorage, so tasks created through the MCP Server will not automatically appear in the web application and vice versa.
 
-## Примеры кода
+## Code Examples
 
-### Инициализация сервера
+### Server Initialization
 
 ```typescript
 const server = new TaskTrackerMCPServer();
 server.run().catch(console.error);
 ```
 
-### Чтение задач
+### Reading Tasks
 
 ```typescript
 async function readTasks(): Promise<Task[]> {
@@ -405,7 +405,7 @@ async function readTasks(): Promise<Task[]> {
 }
 ```
 
-### Создание задачи
+### Creating a Task
 
 ```typescript
 case 'create_task': {
@@ -419,90 +419,90 @@ case 'create_task': {
   };
   tasks.push(newTask);
   await writeTasks(tasks);
-  return { content: [{ type: 'text', text: `Задача создана: ...` }] };
+  return { content: [{ type: 'text', text: `Task created: ...` }] };
 }
 ```
 
-## Решение проблем
+## Troubleshooting
 
-### Проблема: Сервер не запускается
+### Problem: Server Won't Start
 
-**Решение:**
-1. Убедитесь, что установлены все зависимости: `npm install`
-2. Проверьте, что TypeScript скомпилирован: `npm run build`
-3. Проверьте, что Node.js установлен: `node --version`
-4. Проверьте права доступа к файлу: `chmod +x dist/index.js` (Linux/Mac)
+**Solution:**
+1. Make sure all dependencies are installed: `npm install`
+2. Check that TypeScript is compiled: `npm run build`
+3. Check that Node.js is installed: `node --version`
+4. Check file permissions: `chmod +x dist/index.js` (Linux/Mac)
 
-### Проблема: Ошибки при чтении/записи файлов
+### Problem: File Read/Write Errors
 
-**Решение:**
-1. Проверьте права на создание директории `~/.task-tracker/` (или `C:\Users\ВашеИмя\.task-tracker\` на Windows)
-2. Убедитесь, что достаточно места на диске
-3. Проверьте, что путь к домашней директории правильный
-4. Проверьте логи сервера для детальной информации об ошибке
+**Solution:**
+1. Check permissions to create the `~/.task-tracker/` directory (or `C:\Users\YourName\.task-tracker\` on Windows)
+2. Make sure there's enough disk space
+3. Check that the home directory path is correct
+4. Check server logs for detailed error information
 
-### Проблема: AI не видит инструменты
+### Problem: AI Can't See Tools
 
-**Решение:**
-1. Убедитесь, что путь к серверу **абсолютный** (не относительный)
-2. Проверьте, что файл `dist/index.js` существует
-3. Проверьте, что сервер запускается без ошибок
-4. Перезапустите AI-ассистент после изменения конфигурации
-5. Проверьте логи Cursor/Claude Desktop на наличие ошибок
+**Solution:**
+1. Make sure the server path is **absolute** (not relative)
+2. Check that the `dist/index.js` file exists
+3. Check that the server starts without errors
+4. Restart the AI assistant after changing the configuration
+5. Check Cursor/Claude Desktop logs for errors
 
-### Проблема: Задачи не синхронизируются с веб-приложением
+### Problem: Tasks Don't Sync with Web Application
 
-**Важно:** Это ожидаемое поведение. MCP Server использует отдельное хранилище (JSON файл), а веб-приложение использует localStorage браузера. Они не синхронизируются автоматически.
+**Important:** This is expected behavior. MCP Server uses separate storage (JSON file), while the web application uses browser localStorage. They don't sync automatically.
 
-## Ограничения и будущие улучшения
+## Limitations and Future Improvements
 
-### Текущие ограничения
+### Current Limitations
 
-1. **Отдельное хранилище**: MCP Server использует JSON файл, не синхронизируется с localStorage браузера
-2. **Нет аутентификации**: Все задачи хранятся локально без разделения по пользователям
-3. **Нет валидации формата**: Не проверяется корректность формата файла задач
+1. **Separate Storage**: MCP Server uses a JSON file, doesn't sync with browser localStorage
+2. **No Authentication**: All tasks are stored locally without user separation
+3. **No Format Validation**: File format correctness is not validated
 
-### Планируемые(возможные) улучшения
+### Planned (Possible) Improvements
 
-1. **API интеграция**: Синхронизация с веб-приложением через API
-2. **WebSocket поддержка**: Реал-тайм обновления между MCP Server и приложением
-3. **Расширенная статистика**: Добавить инструменты для аналитики и отчетов
-4. **Фильтры и поиск**: Инструменты для поиска задач по различным критериям
-5. **Теги и категории**: Поддержка тегов и категорий задач через MCP
+1. **API Integration**: Sync with web application through API
+2. **WebSocket Support**: Real-time updates between MCP Server and application
+3. **Extended Statistics**: Add tools for analytics and reports
+4. **Filters and Search**: Tools for searching tasks by various criteria
+5. **Tags and Categories**: Support for task tags and categories through MCP
 
-## Какую проблему решает MCP Server?
+## What Problem Does MCP Server Solve?
 
-### Автоматизация управления задачами
+### Task Management Automation
 
-MCP Server позволяет AI-ассистентам автоматически:
-- Создавать задачи на основе диалога
-- Обновлять статусы задач
-- Получать статистику и отчеты
-- Управлять задачами без прямого взаимодействия с UI
+MCP Server allows AI assistants to automatically:
+- Create tasks based on conversation
+- Update task statuses
+- Get statistics and reports
+- Manage tasks without direct UI interaction
 
-### Интеграция в рабочий процесс
+### Workflow Integration
 
-Примеры использования:
-- **Во время работы**: AI создает задачи на основе ваших запросов
-- **Планирование**: AI помогает организовать задачи по статусам
-- **Отчетность**: Быстрое получение статистики через AI
+Usage examples:
+- **During work**: AI creates tasks based on your requests
+- **Planning**: AI helps organize tasks by status
+- **Reporting**: Quick statistics retrieval through AI
 
-### Унификация интерфейса
+### Interface Unification
 
-MCP протокол стандартизирует взаимодействие между AI-ассистентами и приложениями, что позволяет:
-- Использовать один сервер с разными AI-ассистентами
-- Легко добавлять новые инструменты
-- Интегрироваться с другими MCP-совместимыми системами
+MCP protocol standardizes interaction between AI assistants and applications, allowing:
+- Use one server with different AI assistants
+- Easily add new tools
+- Integrate with other MCP-compatible systems
 
-## Архитектура реализации
+## Implementation Architecture
 
-Сервер реализован с использованием `@modelcontextprotocol/sdk` и предоставляет следующие возможности:
+The server is implemented using `@modelcontextprotocol/sdk` and provides the following capabilities:
 
-- Чтение и запись задач из/в JSON файл
-- Валидация входных данных через JSON схемы
-- Обработка ошибок с использованием McpError
-- Типизация TypeScript для безопасности типов
+- Reading and writing tasks from/to JSON file
+- Input data validation through JSON schemas
+- Error handling using McpError
+- TypeScript typing for type safety
 
-## Заключение
+## Conclusion
 
-Task Tracker MCP Server демонстрирует, как можно интегрировать веб-приложение с AI-ассистентами через Model Context Protocol. Это открывает новые возможности для автоматизации и улучшения пользовательского опыта, позволяя AI-ассистентам управлять задачами естественным языком.
+Task Tracker MCP Server demonstrates how to integrate a web application with AI assistants through Model Context Protocol. This opens new possibilities for automation and improving user experience, allowing AI assistants to manage tasks in natural language.

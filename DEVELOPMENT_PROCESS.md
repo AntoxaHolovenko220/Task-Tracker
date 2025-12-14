@@ -1,228 +1,224 @@
-# Процесс разработки Task Tracker
+# Task Tracker Development Process
 
-## С чего начали?
+## Where Did We Start?
 
-### Первый шаг
+### First Step
 
-Первым шагом было планирование архитектуры приложения и выбор технологий:
+The first step was planning the application architecture and choosing technologies:
 
-1. **Выбор стека:**
-   - React + TypeScript (для типобезопасности)
-   - Tailwind CSS (для быстрой стилизации)
-   - @dnd-kit (для drag & drop функционала)
-   - localStorage (для простого хранения данных)
+1. **Stack Selection:**
+   - React + TypeScript (for type safety)
+   - Tailwind CSS (for rapid styling)
+   - @dnd-kit (for drag & drop functionality)
+   - localStorage (for simple data storage)
 
-2. **Изучение требований:**
-   - 3 колонки задач (To Do, In Progress, Done)
-   - Перетаскивание и кнопка галочки для изменения статуса
-   - Темная и светлая тема с оранжевыми акцентами
-   - CRUD операции с задачами
+2. **Requirements Study:**
+   - 3 task columns (To Do, In Progress, Done)
+   - Dragging and checkmark button for status changes
+   - Dark and light themes with orange accents
+   - CRUD operations with tasks
 
-3. **Структура проекта:**
-   - Создана модульная структура компонентов
-   - Разделение на страницы, компоненты и типы
+3. **Project Structure:**
+   - Created modular component structure
+   - Separation into pages, components, and types
 
-### Планирование работы
+### Work Planning
 
-План разработки включал следующие этапы:
+The development plan included the following stages:
 
-1. ✅ Настройка проекта (Tailwind, TypeScript)
-2. ✅ Создание типов и интерфейсов
-3. ✅ Разработка компонентов (TaskCard, TaskColumn, AddTaskModal)
-4. ✅ Реализация логики drag & drop
-5. ✅ Интеграция localStorage
-6. ✅ Добавление переключателя темы
-7. ✅ Создание MCP Server
-8. ✅ Написание документации
+1. ✅ Project setup (Tailwind, TypeScript)
+2. ✅ Creating types and interfaces
+3. ✅ Component development (TaskCard, TaskColumn, AddTaskModal)
+4. ✅ Drag & drop logic implementation
+5. ✅ localStorage integration
+6. ✅ Adding theme toggle
+7. ✅ MCP Server creation
+8. ✅ Documentation writing
 
-## Как организовали код?
+## How Did We Organize the Code?
 
-### Структура файлов
+### File Structure
 
 ```
 src/
 ├── components/
-│   ├── TaskCard/          # Карточка задачи
-│   ├── TaskColumn/        # Колонка с задачами
-│   ├── AddTaskModal/      # Модальное окно добавления/редактирования
-│   ├── ThemeToggle/       # Переключатель темы
-│   └── LanguageToggle/    # Переключатель языка
+│   ├── TaskCard/          # Task card
+│   ├── TaskColumn/        # Task column
+│   ├── AddTaskModal/      # Add/edit modal window
+│   ├── ThemeToggle/       # Theme toggle
+│   └── LanguageToggle/    # Language toggle
 ├── contexts/
-│   └── LanguageContext.tsx  # Контекст для управления языком
+│   └── LanguageContext.tsx  # Context for language management
 ├── pages/
-│   └── MainPage/          # Главная страница с логикой
+│   └── MainPage/          # Main page with logic
 ├── types/
-│   └── task.ts            # TypeScript типы для задач
-├── App.tsx                # Корневой компонент
-└── main.tsx               # Точка входа
+│   └── task.ts            # TypeScript types for tasks
+├── App.tsx                # Root component
+└── main.tsx              # Entry point
 ```
 
-### Почему выбрали такой подход?
+### Why This Approach?
 
-1. **Модульность:**
-   - Каждый компонент в своей папке — легко найти и изменить
-   - Переиспользуемые компоненты вынесены отдельно
+1. **Modularity:**
+   - Each component in its own folder — easy to find and modify
+   - Reusable components separated out
 
-2. **Разделение ответственности:**
-   - `MainPage` содержит всю бизнес-логику (состояние, обработчики)
-   - Компоненты отвечают только за отображение
-   - Типы вынесены отдельно для переиспользования
+2. **Separation of Concerns:**
+   - `MainPage` contains all business logic (state, handlers)
+   - Components are responsible only for display
+   - Types separated out for reuse
 
-3. **Масштабируемость:**
-   - Легко добавить новые компоненты
-   - Простая навигация по проекту
-   - Готовность к добавлению новых страниц
+3. **Scalability:**
+   - Easy to add new components
+   - Simple project navigation
+   - Ready for adding new pages
 
-## Какие были трудности?
+## What Were the Difficulties?
 
-### Трудность 1: Совместимость библиотек
+### Difficulty 1: Library Compatibility
 
-**Проблема:** `react-beautiful-dnd` не поддерживает React 19.
+**Problem:** `react-beautiful-dnd` doesn't support React 19.
 
-**Решение:** Перешли на `@dnd-kit/core`, которая полностью совместима и имеет более современный API.
+**Solution:** Switched to `@dnd-kit/core`, which is fully compatible and has a more modern API.
 
-**Что узнали:** Всегда проверяйте совместимость библиотек с версией React перед использованием.
+**What We Learned:** Always check library compatibility with React version before use.
 
-### Трудность 2: Синхронизация состояния с localStorage
+### Difficulty 2: State Synchronization with localStorage
 
-**Проблема:** Нужно было синхронизировать состояние React с localStorage без лишних ре-рендеров.
+**Problem:** Needed to synchronize React state with localStorage without unnecessary re-renders.
 
-**Решение:** Использовали `useEffect` для сохранения в localStorage при изменении задач. Загрузка происходит один раз при монтировании компонента.
+**Solution:** Used `useEffect` to save to localStorage when tasks change. Loading happens once when the component mounts.
 
-**Что узнали:** Правильное использование `useEffect` с зависимостями критично для производительности.
+**What We Learned:** Proper use of `useEffect` with dependencies is critical for performance.
 
-### Трудность 3: Обработка drag & drop между колонками
+### Difficulty 3: Drag & Drop Between Columns
 
-**Проблема:** Необходимо было реализовать перетаскивание не только внутри колонки, но и между колонками.
+**Problem:** Needed to implement dragging not only within a column but also between columns.
 
-**Решение:** Использовали `DndContext` для всего приложения, а `useDroppable` для каждой колонки. Статус задачи обновляется на основе `over.id` в событии `onDragEnd`.
+**Solution:** Used `DndContext` for the entire application, and `useDroppable` for each column. Task status updates based on `over.id` in the `onDragEnd` event.
 
-**Что узнали:** @dnd-kit предоставляет гибкий API для сложных сценариев drag & drop.
+**What We Learned:** @dnd-kit provides a flexible API for complex drag & drop scenarios.
 
-### Трудность 4: Создание MCP Server
+### Difficulty 4: MCP Server Creation
 
-**Проблема:** Отсутствие опыта работы с Model Context Protocol.
+**Problem:** Lack of experience with Model Context Protocol.
 
-**Решение:** Изучили документацию `@modelcontextprotocol/sdk` и создали сервер с использованием TypeScript. Реализовали 5 инструментов для управления задачами.
+**Solution:** Studied `@modelcontextprotocol/sdk` documentation and created a server using TypeScript. Implemented 5 tools for task management.
 
-**Что узнали:** MCP — мощный протокол для интеграции AI-ассистентов с приложениями. JSON схемы обеспечивают валидацию данных.
+**What We Learned:** MCP is a powerful protocol for integrating AI assistants with applications. JSON schemas ensure data validation.
 
-## Что можно улучшить?
+## What Can Be Improved?
 
-### Функции для будущих версий
+### Features for Future Versions
 
-1. **Синхронизация с бэкендом:**
-   - API для хранения задач на сервере
-   - Синхронизация между устройствами
-   - Многопользовательский режим
+1. **Backend Synchronization:**
+   - API for storing tasks on server
+   - Synchronization between devices
+   - Multi-user mode
 
-2. **Расширенные возможности:**
-   - Теги и категории задач
-   - Приоритеты задач
-   - Дедлайны и напоминания
-   - Поиск и фильтрация задач
-   - Сортировка задач
+2. **Extended Features:**
+   - Task tags and categories
+   - Task priorities
+   - Deadlines and reminders
+   - Task search and filtering
+   - Task sorting
 
-3. **Улучшение UX:**
-   - Анимации при перетаскивании
-   - Подтверждение действий через toast-уведомления
-   - Клавиатурные сокращения
-   - Экспорт/импорт задач (JSON, CSV)
+3. **UX Improvements:**
+   - Dragging animations
+   - Action confirmation via toast notifications
+   - Keyboard shortcuts
+   - Task export/import (JSON, CSV)
 
-4. **Интеграции:**
-   - Интеграция с календарем
-   - Уведомления в браузере
-   - Экспорт в другие системы управления задачами
+4. **Integrations:**
+   - Calendar integration
+   - Browser notifications
+   - Export to other task management systems
 
-5. **Улучшение MCP Server:**
-   - Синхронизация с localStorage браузера через WebSocket
-   - Добавление инструментов для статистики и аналитики
-   - Поддержка фильтров и поиска через MCP
+5. **MCP Server Improvements:**
+   - Synchronization with browser localStorage via WebSocket
+   - Adding tools for statistics and analytics
+   - Filter and search support through MCP
 
-### Технические улучшения
+### Technical Improvements
 
-1. **Тестирование:**
-   - Unit тесты для компонентов
-   - Интеграционные тесты для drag & drop
-   - E2E тесты для основных сценариев
+1. **Testing:**
+   - Unit tests for components
+   - Integration tests for drag & drop
+   - E2E tests for main scenarios
 
-2. **Оптимизация:**
-   - Виртуализация списков для больших объемов задач
-   - Мемоизация компонентов (React.memo, useMemo)
-   - Lazy loading компонентов
+2. **Optimization:**
+   - List virtualization for large task volumes
+   - Component memoization (React.memo, useMemo)
+   - Lazy loading of components
 
-3. **Доступность (a11y):**
-   - ARIA атрибуты
-   - Поддержка screen readers
-   - Навигация с клавиатуры
+3. **Accessibility (a11y):**
+   - ARIA attributes
+   - Screen reader support
+   - Keyboard navigation
 
-## Опыт работы с MCP
+## MCP Experience
 
-### Какой MCP Server использовали?
+### Which MCP Server Was Used?
 
-Создан собственный **Task Tracker MCP Server** для управления задачами через Model Context Protocol.
+Created our own **Task Tracker MCP Server** for managing tasks through Model Context Protocol.
 
-### Как он помог в разработке?
+### How Did It Help in Development?
 
-Хотя MCP Server создавался как часть задания, он демонстрирует:
+Although the MCP Server was created as part of the assignment, it demonstrates:
 
-1. **Возможность интеграции с AI-ассистентами:**
-   - AI может управлять задачами через MCP протокол
-   - Автоматизация создания и обновления задач
-   - Получение статистики по задачам
+1. **AI Assistant Integration Capability:**
+   - AI can manage tasks through MCP protocol
+   - Automation of task creation and updates
+   - Task statistics retrieval
 
-2. **Архитектурную гибкость:**
-   - Сервер работает независимо от веб-приложения
-   - Может быть расширен для интеграции с другими системами
+2. **Architectural Flexibility:**
+   - Server works independently from web application
+   - Can be extended for integration with other systems
 
-### Что было сложного при интеграции?
+### What Was Difficult About Integration?
 
-1. **Понимание структуры MCP:**
-   - Изучение протокола заняло время
-   - Необходимо было правильно определить инструменты и схемы
+1. **Understanding MCP Structure:**
+   - Learning the protocol took time
+   - Needed to correctly define tools and schemas
 
-2. **Хранение данных:**
-   - MCP Server хранит данные в JSON файле
-   - Веб-приложение использует localStorage
-   - В реальном проекте нужна синхронизация через API
+2. **Data Storage:**
+   - MCP Server stores data in JSON file
+   - Web application uses localStorage
+   - Real project needs synchronization through API
 
-3. **Валидация данных:**
-   - JSON схемы должны быть точными
-   - Обработка ошибок на всех этапах
+3. **Data Validation:**
+   - JSON schemas must be precise
+   - Error handling at all stages
 
-### Процесс создания MCP Server
+### MCP Server Creation Process
 
-1. **Изучение SDK:**
-   - Прочитали документацию `@modelcontextprotocol/sdk`
-   - Поняли структуру сервера и инструментов
+1. **SDK Study:**
+   - Read `@modelcontextprotocol/sdk` documentation
+   - Understood server structure and tools
 
-2. **Определение инструментов:**
-   - `list_tasks` — получение списка задач
-   - `create_task` — создание задачи
-   - `update_task_status` — обновление статуса
-   - `delete_task` — удаление задачи
-   - `get_task_statistics` — статистика
+2. **Tool Definition:**
+   - `list_tasks` — get task list
+   - `create_task` — create task
+   - `update_task_status` — update status
+   - `delete_task` — delete task
+   - `get_task_statistics` — statistics
 
-3. **Реализация:**
-   - Создали сервер с использованием TypeScript
-   - Добавили валидацию через JSON схемы
-   - Реализовали работу с файловой системой для хранения
+3. **Implementation:**
+   - Created server using TypeScript
+   - Added validation through JSON schemas
+   - Implemented file system work for storage
 
-4. **Документация:**
-   - Написали README с примерами использования
-   - Описали все инструменты и параметры
+4. **Documentation:**
+   - Wrote README with usage examples
+   - Described all tools and parameters
 
-## Выводы
+## Conclusions
 
-Разработка Task Tracker была интересным опытом, который позволил:
+Developing Task Tracker was an interesting experience that allowed:
 
-- ✅ Изучить современные библиотеки для drag & drop
-- ✅ Освоить работу с MCP протоколом
-- ✅ Практиковаться в создании модульной архитектуры
-- ✅ Научиться эффективно использовать AI-инструменты
+- ✅ Learning modern drag & drop libraries
+- ✅ Mastering MCP protocol work
+- ✅ Practicing modular architecture creation
+- ✅ Learning to effectively use AI tools
 
-Проект получился функциональным, с чистым кодом и хорошей документацией. Готов к дальнейшему развитию и масштабированию.
-
-
-
-
+The project turned out functional, with clean code and good documentation. Ready for further development and scaling.

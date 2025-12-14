@@ -1,168 +1,164 @@
-# Инструкция по использованию Task Tracker
+# Task Tracker Usage Instructions
 
-## Краткое описание
+## Brief Description
 
-**Task Tracker** — это простое и удобное веб-приложение для управления задачами. Позволяет создавать, редактировать, удалять задачи и отслеживать их статус выполнения.
+**Task Tracker** is a simple and convenient web application for task management. Allows you to create, edit, delete tasks and track their completion status.
 
-**Для чего оно нужно:**
-- Организация личных или командных задач
-- Визуальное отслеживание прогресса работы
-- Быстрое переключение между задачами
+**What It's For:**
+- Organizing personal or team tasks
+- Visual tracking of work progress
+- Quick switching between tasks
 
-## Как установить и запустить
+## How to Install and Run
 
-### Требования
+### Requirements
 
-- **Node.js** версии 18.0 или выше
-- **npm** (обычно устанавливается вместе с Node.js)
+- **Node.js** version 18.0 or higher
+- **npm** (usually installed with Node.js)
 
-### Пошаговая инструкция
+### Step-by-Step Instructions
 
-1. **Установите зависимости:**
+1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. **Запустите приложение в режиме разработки:**
+2. **Run the application in development mode:**
    ```bash
    npm run dev
    ```
 
-3. **Откройте браузер:**
-   - После запуска вы увидите в консоли адрес, обычно: `http://localhost:5173`
-   - Откройте этот адрес в браузере
+3. **Open browser:**
+   - After startup, you'll see an address in the console, usually: `http://localhost:5173`
+   - Open this address in your browser
 
-4. **Сборка для продакшена (опционально):**
+4. **Build for production (optional):**
    ```bash
    npm run build
    ```
-   После сборки файлы будут в папке `dist/`
+   After build, files will be in the `dist/` folder
 
-## Как использовать
+## How to Use
 
-### Добавление новой задачи
+### Adding a New Task
 
-1. Нажмите кнопку **"Добавить задачу"** в правом верхнем углу
-2. Заполните форму:
-   - **Название задачи** (обязательно)
-   - **Описание** (необязательно)
-   - **Статус** (выберите из списка)
-3. Нажмите кнопку **"Создать"**
+1. Click the **"Add Task"** button in the top right corner
+2. Fill out the form:
+   - **Task Title** (required)
+   - **Description** (optional)
+   - **Status** (select from list)
+3. Click the **"Create"** button
 
-### Изменение статуса задачи
+### Changing Task Status
 
-Есть два способа изменить статус задачи:
+There are two ways to change task status:
 
-**Способ 1: Перетаскивание (Drag & Drop)**
-- Зажмите левую кнопку мыши на карточке задачи
-- Перетащите её в нужную колонку (К выполнению / В работе / Выполнено)
-- Отпустите кнопку мыши
+**Method 1: Dragging (Drag & Drop)**
+- Hold down the left mouse button on the task card
+- Drag it to the desired column (To Do / In Progress / Done)
+- Release the mouse button
 
-**Способ 2: Кнопка галочки**
-- Нажмите на иконку галочки (✓) на карточке задачи в колонках "К выполнению" или "В работе"
-- Задача сразу переместится в колонку "Выполнено"
+**Method 2: Checkmark Button**
+- Click the checkmark icon (✓) on the task card in "To Do" or "In Progress" columns
+- The task will immediately move to the "Done" column
 
-### Редактирование задачи
+### Editing a Task
 
-1. Нажмите кнопку **"Редактировать"** на карточке задачи
-2. В открывшемся окне измените нужные поля:
-   - Название
-   - Описание
-   - Статус
-3. Нажмите **"Сохранить"**
+1. Click the **"Edit"** button on the task card
+2. In the opened window, change the needed fields:
+   - Title
+   - Description
+   - Status
+3. Click **"Save"**
 
-### Удаление задачи
+### Deleting a Task
 
-1. Нажмите кнопку **"Удалить"** на карточке задачи
-2. Подтвердите удаление в появившемся диалоге
+1. Click the **"Delete"** button on the task card
+2. Confirm deletion in the appeared dialog
 
-### Переключение темы
+### Theme Toggle
 
-- Нажмите на иконку солнца/луны в правом верхнем углу
-- Приложение переключится между светлой и темной темой
-- Ваш выбор автоматически сохранится
+- Click the sun/moon icon in the top right corner
+- The application will switch between light and dark themes
+- Your choice will be automatically saved
 
-### Переключение языка
+### Language Toggle
 
-- Нажмите на иконку языка (RU/EN) в правом верхнем углу рядом с переключателем темы
-- Приложение переключится между русским и английским языками
-- Ваш выбор автоматически сохранится
+- Click the language icon (RU/EN) in the top right corner next to the theme toggle
+- The application will switch between Russian and English languages
+- Your choice will be automatically saved
 
-## Структура приложения
+## Application Structure
 
-Приложение состоит из трех колонок:
+The application consists of three columns:
 
-1. **📋 К выполнению (To Do)**
-   - Задачи, которые еще не начаты
-   - Оранжевая полоска слева на карточке
+1. **📋 To Do**
+   - Tasks that haven't been started yet
+   - Orange stripe on the left of the card
 
-2. **⚙️ В работе (In Progress)**
-   - Задачи, над которыми вы работаете
-   - Более насыщенная оранжевая полоска
+2. **⚙️ In Progress**
+   - Tasks you're working on
+   - More saturated orange stripe
 
-3. **✅ Выполнено (Done)**
-   - Завершенные задачи
-   - Самая темная оранжевая полоска
-   - Текст зачеркнут
+3. **✅ Done**
+   - Completed tasks
+   - Darkest orange stripe
+   - Text is crossed out
 
-## FAQ (Часто задаваемые вопросы)
+## FAQ (Frequently Asked Questions)
 
-### Где хранятся данные?
+### Where Is Data Stored?
 
-Данные хранятся в **localStorage** вашего браузера. Это значит:
-- ✅ Данные доступны только вам
-- ✅ Работает без интернета (после первой загрузки)
-- ⚠️ Данные привязаны к конкретному браузеру и устройству
-- ⚠️ При очистке данных браузера задачи удалятся
+Data is stored in your browser's **localStorage**. This means:
+- ✅ Data is only available to you
+- ✅ Works offline (after first load)
+- ⚠️ Data is tied to a specific browser and device
+- ⚠️ Tasks will be deleted if browser data is cleared
 
-### Как сбросить все задачи?
+### How to Reset All Tasks?
 
-Вы можете удалить все задачи вручную, или:
-1. Откройте консоль разработчика (F12)
-2. Перейдите на вкладку "Application" (Chrome) или "Storage" (Firefox)
-3. Найдите "Local Storage" → ваш домен
-4. Удалите ключ `task-tracker-tasks`
+You can delete all tasks manually, or:
+1. Open developer console (F12)
+2. Go to "Application" tab (Chrome) or "Storage" tab (Firefox)
+3. Find "Local Storage" → your domain
+4. Delete the `task-tracker-tasks` key
 
-Или просто очистите все данные сайта через настройки браузера.
+Or simply clear all site data through browser settings.
 
-### Можно ли экспортировать задачи?
+### Can I Export Tasks?
 
-В текущей версии экспорт не реализован. Вы можете:
-- Сделать скриншоты колонок
-- Скопировать данные из localStorage (через консоль разработчика)
-- В будущих версиях планируется функция экспорта в JSON/CSV
+Export is not implemented in the current version. You can:
+- Take screenshots of columns
+- Copy data from localStorage (via developer console)
+- Export to JSON/CSV is planned for future versions
 
-### Поддерживается ли работа на мобильных устройствах?
+### Is Mobile Device Support Available?
 
-Да, приложение адаптивно и работает на мобильных устройствах. Однако drag & drop может быть неудобен на сенсорных экранах, поэтому используйте кнопку галочки для изменения статуса.
+Yes, the application is responsive and works on mobile devices. However, drag & drop may be inconvenient on touch screens, so use the checkmark button to change status.
 
-### Что делать, если задачи не сохраняются?
+### What to Do If Tasks Don't Save?
 
-1. Проверьте, включены ли cookies в браузере
-2. Убедитесь, что localStorage не заблокирован (проверьте настройки приватности)
-3. Проверьте консоль браузера на наличие ошибок (F12 → Console)
+1. Check if cookies are enabled in the browser
+2. Make sure localStorage is not blocked (check privacy settings)
+3. Check browser console for errors (F12 → Console)
 
-## Контакты для помощи
+## Help Contacts
 
-Если у вас возникли проблемы или вопросы:
+If you have problems or questions:
 
-1. **Проверьте документацию разработки:** `DEVELOPMENT_PROCESS.md`
-2. **Изучите код:** все файлы находятся в папке `src/`
-3. **Создайте issue в репозитории:** если проект размещен на GitHub
-4. **Свяжитесь с разработчиком команды**
+1. **Check development documentation:** `DEVELOPMENT_PROCESS.md`
+2. **Study the code:** all files are in the `src/` folder
+3. **Create an issue in the repository:** if the project is hosted on GitHub
+4. **Contact the development team**
 
-## Полезные советы
+## Useful Tips
 
-💡 **Совет 1:** Используйте описания задач для добавления деталей, ссылок или заметок
+💡 **Tip 1:** Use task descriptions to add details, links, or notes
 
-💡 **Совет 2:** Перетаскивайте задачи в колонку "В работе", когда начинаете над ними работать
+💡 **Tip 2:** Drag tasks to the "In Progress" column when you start working on them
 
-💡 **Совет 3:** Регулярно переводите выполненные задачи в колонку "Выполнено" для визуализации прогресса
+💡 **Tip 3:** Regularly move completed tasks to the "Done" column to visualize progress
 
-💡 **Совет 4:** Используйте темную тему для работы в вечернее время — она менее утомляет глаза
+💡 **Tip 4:** Use dark theme for evening work — it's less tiring for the eyes
 
-💡 **Совет 5:** Колонки показывают количество задач в каждой, что помогает быстро оценить нагрузку
-
-
-
-
+💡 **Tip 5:** Columns show the number of tasks in each, helping to quickly assess workload

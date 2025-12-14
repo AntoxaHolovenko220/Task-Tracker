@@ -1,55 +1,55 @@
 # Task Tracker
 
-Простое и удобное веб-приложение для управления задачами, созданное с использованием React, TypeScript и Tailwind CSS.
+A simple and convenient web application for task management, built with React, TypeScript, and Tailwind CSS.
 
-## 🚀 Возможности
+## 🚀 Features
 
-- ✅ **Управление задачами**: Создание, редактирование и удаление задач
-- 🎯 **Три колонки**: To Do, In Progress, Done для отслеживания прогресса
-- 🖱️ **Drag & Drop**: Перетаскивание задач между колонками
-- ✅ **Быстрое завершение**: Кнопка галочки для мгновенного перевода задачи в "Выполнено"
-- 🌙 **Темная тема**: Переключение между светлой и темной темой с оранжевыми акцентами
-- 🌐 **Многоязычность**: Поддержка русского и английского языков
-- 💾 **Локальное хранилище**: Все данные сохраняются в localStorage браузера
-- 🤖 **MCP Server**: Интеграция с AI-ассистентами через Model Context Protocol
+- ✅ **Task Management**: Create, edit, and delete tasks
+- 🎯 **Three Columns**: To Do, In Progress, Done for tracking progress
+- 🖱️ **Drag & Drop**: Drag tasks between columns
+- ✅ **Quick Completion**: Checkmark button to instantly move a task to "Done"
+- 🌙 **Dark Theme**: Toggle between light and dark themes with orange accents
+- 🌐 **Multilingual**: Support for Russian and English languages
+- 💾 **Local Storage**: All data is saved in browser's localStorage
+- 🤖 **MCP Server**: Integration with AI assistants through Model Context Protocol
 
-## 🛠️ Технологии
+## 🛠️ Technologies
 
-- **React 19** - UI библиотека
-- **TypeScript** - Типобезопасность
-- **Tailwind CSS** - Стилизация
-- **@dnd-kit** - Drag & Drop функционал
-- **@heroicons/react** - Иконки
-- **Vite** - Сборщик и dev-сервер
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **@dnd-kit** - Drag & Drop functionality
+- **@heroicons/react** - Icons
+- **Vite** - Build tool and dev server
 
-## 📦 Установка
+## 📦 Installation
 
 ```bash
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Запуск dev-сервера
+# Run dev server
 npm run dev
 
-# Сборка для продакшена
+# Build for production
 npm run build
 
-# Превью продакшен-сборки
+# Preview production build
 npm run preview
 ```
 
-## 📚 Документация
+## 📚 Documentation
 
-- [TASK_TRACKER_INSTRUCTIONS.md](./TASK_TRACKER_INSTRUCTIONS.md) - Инструкция по использованию приложения
-- [AI_WORKFLOW_DOCUMENTATION.md](./AI_WORKFLOW_DOCUMENTATION.md) - Документация процесса работы с AI
-- [DEVELOPMENT_PROCESS.md](./DEVELOPMENT_PROCESS.md) - Описание процесса разработки
-- [MCP_SERVER_DOCUMENTATION.md](./MCP_SERVER_DOCUMENTATION.md) - Документация MCP Server
+- [TASK_TRACKER_INSTRUCTIONS.md](./TASK_TRACKER_INSTRUCTIONS.md) - Application usage instructions
+- [AI_WORKFLOW_DOCUMENTATION.md](./AI_WORKFLOW_DOCUMENTATION.md) - AI workflow documentation
+- [DEVELOPMENT_PROCESS.md](./DEVELOPMENT_PROCESS.md) - Development process description
+- [MCP_SERVER_DOCUMENTATION.md](./MCP_SERVER_DOCUMENTATION.md) - MCP Server documentation
 
 ## 🤖 MCP Server
 
-Проект включает собственный MCP Server для интеграции с AI-ассистентами. Подробнее в [MCP_SERVER_DOCUMENTATION.md](./MCP_SERVER_DOCUMENTATION.md).
+The project includes its own MCP Server for integration with AI assistants. See [MCP_SERVER_DOCUMENTATION.md](./MCP_SERVER_DOCUMENTATION.md) for details.
 
-### Установка MCP Server
+### MCP Server Installation
 
 ```bash
 cd mcp-server
@@ -57,57 +57,57 @@ npm install
 npm run build
 ```
 
-### Запуск MCP Server
+### Running MCP Server
 
 ```bash
 npm start
 ```
 
-## 📁 Структура проекта
+## 📁 Project Structure
 
 ```
 task-tracker/
 ├── src/
-│   ├── components/       # React компоненты
+│   ├── components/       # React components
 │   │   ├── TaskCard/
 │   │   ├── TaskColumn/
 │   │   ├── AddTaskModal/
 │   │   ├── ThemeToggle/
 │   │   └── LanguageToggle/
-│   ├── contexts/         # React контексты
+│   ├── contexts/         # React contexts
 │   │   └── LanguageContext.tsx
 │   ├── pages/
-│   │   └── MainPage/     # Главная страница
+│   │   └── MainPage/     # Main page
 │   ├── types/
-│   │   └── task.ts       # TypeScript типы
+│   │   └── task.ts       # TypeScript types
 │   └── App.tsx
-├── mcp-server/           # MCP Server для интеграции с AI
+├── mcp-server/           # MCP Server for AI integration
 │   ├── src/
 │   │   └── index.ts
 │   └── package.json
 └── package.json
 ```
 
-## 🎨 Особенности UI
+## 🎨 UI Features
 
-- **Оранжевая цветовая схема**: Акценты в оранжевых тонах для всех элементов
-- **Адаптивный дизайн**: Работает на десктопе и мобильных устройствах
-- **Плавные анимации**: Переходы и эффекты для лучшего UX
-- **Темная тема**: Полная поддержка темной темы с сохранением предпочтений
-- **Многоязычность**: Поддержка русского и английского языков с сохранением выбора
+- **Orange Color Scheme**: Orange accents for all elements
+- **Responsive Design**: Works on desktop and mobile devices
+- **Smooth Animations**: Transitions and effects for better UX
+- **Dark Theme**: Full dark theme support with preference saving
+- **Multilingual**: Support for Russian and English languages with preference saving
 
-## 🔧 Разработка
+## 🔧 Development
 
-Проект использует:
-- **Vite** для быстрой разработки с HMR
-- **TypeScript** для типобезопасности
-- **ESLint** для проверки кода
-- **Tailwind CSS** для стилизации
+The project uses:
+- **Vite** for fast development with HMR
+- **TypeScript** for type safety
+- **ESLint** for code linting
+- **Tailwind CSS** for styling
 
-## 📝 Лицензия
+## 📝 License
 
-Этот проект создан в рамках тестового задания.
+This project was created as part of a test assignment.
 
-## 👨‍💻 Автор
+## 👨‍💻 Author
 
-Разработано с использованием AI-инструментов (Cursor AI) для ускорения процесса разработки.
+Developed using AI tools (Cursor AI) to accelerate the development process.
