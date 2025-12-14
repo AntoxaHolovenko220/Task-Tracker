@@ -22,8 +22,7 @@ mcp-server/
 │   └── index.ts          # Основной файл сервера
 ├── dist/                 # Скомпилированный JavaScript
 ├── package.json
-├── tsconfig.json
-└── README.md
+└── tsconfig.json
 ```
 
 ### Основные компоненты

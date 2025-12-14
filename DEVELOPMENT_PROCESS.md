@@ -45,7 +45,10 @@ src/
 │   ├── TaskCard/          # Карточка задачи
 │   ├── TaskColumn/        # Колонка с задачами
 │   ├── AddTaskModal/      # Модальное окно добавления/редактирования
-│   └── ThemeToggle/       # Переключатель темы
+│   ├── ThemeToggle/       # Переключатель темы
+│   └── LanguageToggle/    # Переключатель языка
+├── contexts/
+│   └── LanguageContext.tsx  # Контекст для управления языком
 ├── pages/
 │   └── MainPage/          # Главная страница с логикой
 ├── types/
