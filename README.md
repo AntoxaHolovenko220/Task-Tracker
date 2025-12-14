@@ -1,73 +1,108 @@
-# React + TypeScript + Vite
+# Task Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простое и удобное веб-приложение для управления задачами, созданное с использованием React, TypeScript и Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ **Управление задачами**: Создание, редактирование и удаление задач
+- 🎯 **Три колонки**: To Do, In Progress, Done для отслеживания прогресса
+- 🖱️ **Drag & Drop**: Перетаскивание задач между колонками
+- ✅ **Быстрое завершение**: Кнопка галочки для мгновенного перевода задачи в "Выполнено"
+- 🌙 **Темная тема**: Переключение между светлой и темной темой с оранжевыми акцентами
+- 💾 **Локальное хранилище**: Все данные сохраняются в localStorage браузера
+- 🤖 **MCP Server**: Интеграция с AI-ассистентами через Model Context Protocol
 
-## React Compiler
+## 🛠️ Технологии
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI библиотека
+- **TypeScript** - Типобезопасность
+- **Tailwind CSS** - Стилизация
+- **@dnd-kit** - Drag & Drop функционал
+- **@heroicons/react** - Иконки
+- **Vite** - Сборщик и dev-сервер
 
-## Expanding the ESLint configuration
+## 📦 Установка
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Установка зависимостей
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Запуск dev-сервера
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Сборка для продакшена
+npm run build
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Превью продакшен-сборки
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📚 Документация
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [TASK_TRACKER_INSTRUCTIONS.md](./TASK_TRACKER_INSTRUCTIONS.md) - Инструкция по использованию приложения
+- [AI_WORKFLOW_DOCUMENTATION.md](./AI_WORKFLOW_DOCUMENTATION.md) - Документация процесса работы с AI
+- [DEVELOPMENT_PROCESS.md](./DEVELOPMENT_PROCESS.md) - Описание процесса разработки
+- [mcp-server/README.md](./mcp-server/README.md) - Документация MCP Server
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🤖 MCP Server
+
+Проект включает собственный MCP Server для интеграции с AI-ассистентами. Подробнее в [mcp-server/README.md](./mcp-server/README.md).
+
+### Установка MCP Server
+
+```bash
+cd mcp-server
+npm install
+npm run build
 ```
+
+### Запуск MCP Server
+
+```bash
+npm start
+```
+
+## 📁 Структура проекта
+
+```
+task-tracker/
+├── src/
+│   ├── components/       # React компоненты
+│   │   ├── TaskCard/
+│   │   ├── TaskColumn/
+│   │   ├── AddTaskModal/
+│   │   └── ThemeToggle/
+│   ├── pages/
+│   │   └── MainPage/     # Главная страница
+│   ├── types/
+│   │   └── task.ts       # TypeScript типы
+│   └── App.tsx
+├── mcp-server/           # MCP Server для интеграции с AI
+│   ├── src/
+│   │   └── index.ts
+│   └── package.json
+└── package.json
+```
+
+## 🎨 Особенности UI
+
+- **Оранжевая цветовая схема**: Акценты в оранжевых тонах для всех элементов
+- **Адаптивный дизайн**: Работает на десктопе и мобильных устройствах
+- **Плавные анимации**: Переходы и эффекты для лучшего UX
+- **Темная тема**: Полная поддержка темной темы с сохранением предпочтений
+
+## 🔧 Разработка
+
+Проект использует:
+- **Vite** для быстрой разработки с HMR
+- **TypeScript** для типобезопасности
+- **ESLint** для проверки кода
+- **Tailwind CSS** для стилизации
+
+## 📝 Лицензия
+
+Этот проект создан в рамках тестового задания.
+
+## 👨‍💻 Автор
+
+Разработано с использованием AI-инструментов (Cursor AI) для ускорения процесса разработки.
