@@ -11,7 +11,6 @@ import {
 import * as fs from 'fs/promises'
 import * as path from 'path'
 
-// Типы задач
 type TaskStatus = 'todo' | 'in-progress' | 'done'
 
 interface Task {
@@ -22,14 +21,12 @@ interface Task {
 	createdAt: number
 }
 
-// Путь к хранилищу данных
 const STORAGE_DIR = path.join(
 	process.env.HOME || process.env.USERPROFILE || '',
 	'.task-tracker'
 )
 const STORAGE_PATH = path.join(STORAGE_DIR, 'tasks.json')
 
-// Утилиты для работы с файлами
 async function ensureStorageDirectory(): Promise<void> {
 	try {
 		await fs.mkdir(STORAGE_DIR, { recursive: true })
@@ -63,7 +60,6 @@ async function writeTasks(tasks: Task[]): Promise<void> {
 	}
 }
 
-// Класс MCP сервера
 class TaskTrackerMCPServer {
 	private server: Server
 
@@ -84,7 +80,6 @@ class TaskTrackerMCPServer {
 	}
 
 	private setupHandlers(): void {
-		// Обработчик списка инструментов
 		this.server.setRequestHandler(ListToolsRequestSchema, async () => {
 			return {
 				tools: [
@@ -173,7 +168,6 @@ class TaskTrackerMCPServer {
 			}
 		})
 
-		// Обработчик вызова инструментов
 		this.server.setRequestHandler(
 			CallToolRequestSchema,
 			async (request: any) => {
@@ -379,7 +373,6 @@ class TaskTrackerMCPServer {
 	}
 }
 
-// Запуск сервера
 const server = new TaskTrackerMCPServer()
 server.run().catch(error => {
 	console.error('Ошибка при запуске сервера:', error)
